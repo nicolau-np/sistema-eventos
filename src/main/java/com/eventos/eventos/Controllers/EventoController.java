@@ -58,4 +58,11 @@ public class EventoController {
         return modelAndView;
     }
 
+    @GetMapping("/eventos/{id}/destroy")
+    public String destroy(@PathVariable("id") Long id){
+
+this.eventoService.delete(id);
+        return "redirect:/eventos";
+    }
+
 }

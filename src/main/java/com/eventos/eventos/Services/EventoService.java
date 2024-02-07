@@ -27,4 +27,8 @@ public class EventoService {
         return this.eventoRepository.findById(id).get();
     }
 
+    public void delete(Long id) {
+        this.eventoRepository.deleteById(id);
+    }
+
 }

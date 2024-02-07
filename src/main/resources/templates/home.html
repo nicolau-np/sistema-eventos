@@ -60,7 +60,23 @@
                 </div>
             </div>
             <div class="col-md-12">
-             hello
+             <div class="row">
+                <div class="col-md-6 mb-4" th:each="evento : ${eventos}">
+                    <div class="card">
+                        <div class="card-header" th:text="${evento.nome_evento}"></div>
+                        <div class="card-body">
+                            <div class="description" th:text="${evento.descricao}"></div>
+                            <div class="local">
+                                <i class="fas fa-map-marker-alt"></i> <span th:text="${evento.local}"></span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                           <i class="fas fa-calendar"></i> <span th:text="${evento.data}"></span>
+                            <span th:text="${evento.hora}"></span>
+                        </div>
+                    </div>
+                </div>
+             </div>
             </div>
         </div>
 

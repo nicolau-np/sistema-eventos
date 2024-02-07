@@ -60,7 +60,7 @@
             </div>
             <div class="col-md-12">
                 <form action="/eventos" method="POST" enctype="multipart/form-data">
-                    <input type="text" readonly id="id" name="id" th:value="${evento.id}"/>
+                    <input type="hidden" readonly id="id" name="id" th:value="${evento.id}"/>
                     <div class="row">
                         <div class="col-md-4 mb-4">
                             <label for="">Nome do Evento <span class="text-danger">*</span></label>
