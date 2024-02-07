@@ -19,8 +19,12 @@ public class EventoService {
         return this.eventoRepository.findAll();
     }
 
-    public void save(Evento evento){
+    public void save(Evento evento) {
         this.eventoRepository.save(evento);
+    }
+
+    public Evento findById(Long id) {
+        return this.eventoRepository.findById(id).get();
     }
 
 }
