@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import java.util.List;
 
 import com.eventos.eventos.Models.Evento;
 import com.eventos.eventos.Services.EventoService;
@@ -21,8 +22,10 @@ public class EventoController {
 
     @GetMapping("/eventos")
     public ModelAndView index() {
+        List<Evento> eventos = this.eventoService.findAll();
+        
         ModelAndView modelAndView = new ModelAndView("index");
-
+        modelAndView.addObject("eventos", eventos);
         return modelAndView;
     }
 

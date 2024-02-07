@@ -14,9 +14,9 @@ public class EventoService {
     @Autowired
     private EventoRepository eventoRepository;
 
-    public List<Evento> getEventoList() {
+    public List<Evento> findAll() {
 
-        return null;
+        return this.eventoRepository.findAll();
     }
 
     public void save(Evento evento){
