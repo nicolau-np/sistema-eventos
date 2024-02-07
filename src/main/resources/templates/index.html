@@ -78,13 +78,17 @@
                         <tbody>
                             <tr th:each="evento : ${eventos}">
                                 <td th:text="${evento.nome_evento}"></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td th:text="${evento.tipo_evento}"></td>
+                                <td th:text="${evento.preco}"></td>
+                                <td th:text="${evento.descricao}"></td>
+                                <td th:text="${evento.local}"></td>
+                                <td th:text="${evento.data}"></td>
+                                <td th:text="${evento.hora}"></td>
+                                <td>
+                                    <a th:href="@{/eventos/{id}/edit(id=${evento.id})}"
+                                    class="btn btn-primary mr-2">Editar</a>
+                                    <a th:href="@{/eventos/{id}/destroy(id=${evento.id})}" class="btn btn-danger mr-2">Eliminar</a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
