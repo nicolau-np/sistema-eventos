@@ -1,5 +1,6 @@
 package com.eventos.eventos.Controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,15 +9,18 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.eventos.eventos.Models.Evento;
+import com.eventos.eventos.Services.EventoService;
 
 import jakarta.validation.Valid;
 
 @Controller
 public class EventoController {
 
+    @Autowired
+    private EventoService eventoService;
 
     @GetMapping("/eventos")
-    public ModelAndView index(){
+    public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("index");
 
         return modelAndView;
@@ -30,13 +34,14 @@ public class EventoController {
     }
 
     @PostMapping("/eventos")
-    public String store(@Valid Evento evento, BindingResult bindingResult, RedirectAttributes redirectAttributes){
+    public String store(@Valid Evento evento, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("message", "Verificar os campos obrigatórios");
-           return "redirect:/eventos/create";
+            return "redirect:/eventos/create";
         }
 
+        this.eventoService.save(evento);
         return "redirect:/eventos";
     }
 
