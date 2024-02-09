@@ -14,6 +14,12 @@ import com.eventos.eventos.Repositories.UserRepository;
 import ch.qos.logback.core.model.Model;
 import jakarta.validation.Valid;
 
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
+
+
 @Controller
 public class AuthController {
 
