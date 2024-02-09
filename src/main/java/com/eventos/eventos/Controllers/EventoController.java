@@ -27,7 +27,7 @@ public class EventoController {
         String response = "nada";
         if (session != null && session.getAttribute("email") != null) {
             response = "existe";
-        }else{
+        } else {
             response = "nulo";
         }
         List<Evento> eventos = this.eventoService.findAll();
@@ -43,10 +43,10 @@ public class EventoController {
         String response = "nada";
         if (session != null && session.getAttribute("email") != null) {
             response = "existe";
-        }else{
+        } else {
             response = "nulo";
         }
-        
+
         ModelAndView modelAndView = new ModelAndView("create");
         modelAndView.addObject("sessao", response);
         return modelAndView;
@@ -69,21 +69,21 @@ public class EventoController {
         String response = "nada";
         if (session != null && session.getAttribute("email") != null) {
             response = "existe";
-        }else{
+        } else {
             response = "nulo";
         }
         ModelAndView modelAndView = new ModelAndView("edit");
         Evento evento = this.eventoService.findById(id);
-        
+
         modelAndView.addObject("evento", evento);
         modelAndView.addObject("sessao", response);
         return modelAndView;
     }
 
     @GetMapping("/eventos/{id}/destroy")
-    public String destroy(@PathVariable("id") Long id){
+    public String destroy(@PathVariable("id") Long id) {
 
-this.eventoService.delete(id);
+        this.eventoService.delete(id);
         return "redirect:/eventos";
     }
 
