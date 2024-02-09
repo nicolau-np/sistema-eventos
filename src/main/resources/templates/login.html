@@ -31,6 +31,9 @@
             </div>
             <div class="row">
                 <div class="col-md-12 mb-4">
+                    <div class="alert alert-info" th:if="${message}" th:text="${message}"></div>
+                </div>
+                <div class="col-md-12 mb-4">
                     <label for="">E-mail <span class="text-danger">*</span></label>
                     <input type="text" name="email" class="form-control" placeholder="E-mail"/>
                     <span class="text-danger"></span>
