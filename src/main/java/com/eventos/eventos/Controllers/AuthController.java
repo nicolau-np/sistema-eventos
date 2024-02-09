@@ -10,10 +10,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.eventos.eventos.Models.User;
 import com.eventos.eventos.Repositories.UserRepository;
+import com.eventos.eventos.Services.AuthService;
 
 import ch.qos.logback.core.model.Model;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
-
 
 @Controller
 public class AuthController {
@@ -23,20 +24,31 @@ public class AuthController {
 
     @GetMapping("/auth/login")
     public ModelAndView login() {
+
         ModelAndView modelAndView = new ModelAndView("login");
 
         return modelAndView;
     }
 
     @PostMapping("/auth/login")
-    public String logar(RedirectAttributes redirectAttributes, User userParam) {
+    public String logar(RedirectAttributes redirectAttributes, User userParam, HttpSession session) {
+
         User user = this.userRepository.Login(userParam.getEmail(), userParam.getPassword());
         if (user != null) {
+            session.setAttribute("email", userParam.getEmail());
             return "redirect:/eventos";
         }
 
         redirectAttributes.addFlashAttribute("message", "Email ou Plavra Passe Incorrectos");
 
+        return "redirect:/auth/login";
+    }
+
+    @GetMapping("/auth/logout")
+    public String logout(HttpSession session) {
+        if (session != null) {
+            session.invalidate();
+        }
         return "redirect:/auth/login";
     }
 

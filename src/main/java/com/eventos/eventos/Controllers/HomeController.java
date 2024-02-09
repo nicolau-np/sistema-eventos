@@ -9,6 +9,8 @@ import java.util.List;
 import com.eventos.eventos.Models.Evento;
 import com.eventos.eventos.Services.EventoService;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class HomeController {
 
@@ -16,12 +18,21 @@ public class HomeController {
     private EventoService eventoService;
 
     @GetMapping("/")
-    public ModelAndView index() {
+    public ModelAndView index(HttpSession session) {
+        String response = "nada";
+        if (session != null && session.getAttribute("email") != null) {
+            response = "existe";
+        }else{
+            response = "nulo";
+        }
         ModelAndView modelAndView = new ModelAndView("home");
         List<Evento> eventos = this.eventoService.findAll();
 
         modelAndView.addObject("eventos", eventos);
+        modelAndView.addObject("sessao", response);
         return modelAndView;
     }
+
+
 
 }

@@ -29,16 +29,16 @@
                                 <li class="nav-item">
                                     <a class="nav-link active" aria-current="page" href="/">Principal</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item" th:if="${sessao == 'existe'}">
                                     <a class="nav-link" href="/eventos/create">Novo Evento</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item" th:if="${sessao == 'existe'}">
                                     <a class="nav-link" href="/eventos">Listar Evento</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item" th:if="${sessao == 'nulo'}">
                                     <a class="nav-link" href="/auth/login">Iniciar Sessão</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item" th:if="${sessao == 'existe'}">
                                     <a class="nav-link" href="/auth/logout">Sair</a>
                                 </li>
                             </ul>

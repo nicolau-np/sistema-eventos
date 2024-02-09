@@ -13,6 +13,7 @@ import java.util.List;
 import com.eventos.eventos.Models.Evento;
 import com.eventos.eventos.Services.EventoService;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 @Controller
@@ -22,18 +23,32 @@ public class EventoController {
     private EventoService eventoService;
 
     @GetMapping("/eventos")
-    public ModelAndView index() {
+    public ModelAndView index(HttpSession session) {
+        String response = "nada";
+        if (session != null && session.getAttribute("email") != null) {
+            response = "existe";
+        }else{
+            response = "nulo";
+        }
         List<Evento> eventos = this.eventoService.findAll();
 
         ModelAndView modelAndView = new ModelAndView("index");
+        modelAndView.addObject("sessao", response);
         modelAndView.addObject("eventos", eventos);
         return modelAndView;
     }
 
     @GetMapping("/eventos/create")
-    public ModelAndView create() {
+    public ModelAndView create(HttpSession session) {
+        String response = "nada";
+        if (session != null && session.getAttribute("email") != null) {
+            response = "existe";
+        }else{
+            response = "nulo";
+        }
+        
         ModelAndView modelAndView = new ModelAndView("create");
-
+        modelAndView.addObject("sessao", response);
         return modelAndView;
     }
 
@@ -50,11 +65,18 @@ public class EventoController {
     }
 
     @GetMapping("/eventos/{id}/edit")
-    public ModelAndView edit(@PathVariable("id") Long id) {
+    public ModelAndView edit(@PathVariable("id") Long id, HttpSession session) {
+        String response = "nada";
+        if (session != null && session.getAttribute("email") != null) {
+            response = "existe";
+        }else{
+            response = "nulo";
+        }
         ModelAndView modelAndView = new ModelAndView("edit");
         Evento evento = this.eventoService.findById(id);
         
         modelAndView.addObject("evento", evento);
+        modelAndView.addObject("sessao", response);
         return modelAndView;
     }
 
